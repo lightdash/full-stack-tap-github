@@ -1,0 +1,40 @@
+version: 1
+send_anonymous_usage_stats: false
+project_id: e3d30230-f4df-4327-a52f-9c540594cfd6
+plugins:
+  extractors:
+  - name: tap-github
+    namespace: tap_github
+    pip_url: tap-github
+    executable: tap-github
+    capabilities:
+    - properties
+    - discover
+    - state
+    settings:
+    - name: access_token
+      kind: string
+    - name: repository
+      kind: string
+    - name: start_date
+      kind: date_iso8601
+    select:
+    - commits.*
+    - stargazers.*
+  loaders:
+  - name: target-postgres
+    variant: datamill-co
+    pip_url: singer-target-postgres
+  transformers:
+  - name: dbt
+    pip_url: dbt==0.19.1
+  files:
+  - name: dbt
+    pip_url: git+https://gitlab.com/meltano/files-dbt.git@config-version-2
+schedules:
+- name: github-to-postgres
+  extractor: tap-github
+  loader: target-postgres
+  transform: run
+  interval: '@once'
+  start_date: 2020-10-01 00:00:00

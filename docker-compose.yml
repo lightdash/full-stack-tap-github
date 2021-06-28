@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  meltano:
+    depends_on:
+      - warehouse
+    image: meltano/meltano
+    volumes:
+      - ./gh-demo:/projects
+    working_dir: /projects
+    environment:
+      - TARGET_POSTGRES_HOST=warehouse
+      - TARGET_POSTGRES_PORT=5432
+      - TARGET_POSTGRES_DATABASE=postgres
+      - TARGET_POSTGRES_USERNAME=postgres
+      - TARGET_POSTGRES_PASSWORD=verysecretpassword
+      - TARGET_POSTGRES_SCHEMA=public
+      - DBT_SOURCE_SCHEMA=public
+      - DBT_TARGET_SCHEMA=dbt
+      - DBT_TARGET=postgres
+      - DBT_MODELS=tap_github
+    env_file:
+      - .env
+    ports:
+      - 5000:5000
+
+  warehouse:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=verysecretpassword
+
+  lightdash:
+    image: lightdash/lightdash
+    depends_on: 
+      - warehouse
+    volumes:
+      - ./gh-demo/transform:/usr/app/dbt
+      - ./gh-demo/transform/profile:/usr/app/profiles
+    ports:
+      - 8080:8080
+    environment:
+      - TARGET_POSTGRES_HOST=warehouse
+      - TARGET_POSTGRES_PORT=5432
+      - TARGET_POSTGRES_DATABASE=postgres
+      - TARGET_POSTGRES_USERNAME=postgres
+      - TARGET_POSTGRES_PASSWORD=verysecretpassword
+      - TARGET_POSTGRES_SCHEMA=public
+      - DBT_SOURCE_SCHEMA=public
+      - DBT_TARGET_SCHEMA=dbt
+      - DBT_TARGET=postgres
+      - DBT_MODELS=tap_github
+
+    

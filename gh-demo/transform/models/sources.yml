@@ -1,0 +1,8 @@
+version: 2
+sources:
+  - name: raw_singer_tap_github
+    database: "{{ env_var('TARGET_POSTGRES_DATABASE') }}"
+    schema: "{{ env_var('DBT_SOURCE_SCHEMA') }}"
+    tables:
+      - name: stargazers
+      - name: commits

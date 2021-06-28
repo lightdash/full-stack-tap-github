@@ -1,0 +1,15 @@
+config:
+  send_anonymous_usage_stats: False
+  use_colors: True
+meltano:
+  target: "{{ env_var('DBT_TARGET') }}"
+  outputs:
+    postgres:
+      type: postgres
+      threads: 2
+      host: "{{ env_var('TARGET_POSTGRES_HOST') }}"
+      port: "{{ env_var('TARGET_POSTGRES_PORT') | int }}"
+      user: "{{ env_var('TARGET_POSTGRES_USERNAME') }}"
+      pass: "{{ env_var('TARGET_POSTGRES_PASSWORD') }}"
+      dbname: "{{ env_var('TARGET_POSTGRES_DATABASE') }}"
+      schema: "{{ env_var('DBT_TARGET_SCHEMA') }}"
