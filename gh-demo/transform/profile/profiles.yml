@@ -2,7 +2,7 @@ config:
   send_anonymous_usage_stats: False
   use_colors: True
 meltano:
-  target: "{{ env_var('DBT_TARGET') }}"
+  target: postgres
   outputs:
     postgres:
       type: postgres

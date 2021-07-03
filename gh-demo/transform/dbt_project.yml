@@ -1,4 +1,4 @@
-name: tap_github
+name: tap_github_demo
 version: '1.0'
 profile: meltano
 config-version: 2
@@ -22,5 +22,9 @@ clean-targets:
 - dbt_modules
 - logs
 models:
-  tap_github:
+  tap_github_demo:
     materialized: table
+vars:
+  tap_github:   # I CANNOT GET THESE TO RENDER env_vars what am I doing wrong?!
+    tap_github_raw_database: postgres
+    tap_github_raw_schema: public
