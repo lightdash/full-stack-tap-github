@@ -1,9 +1,17 @@
-# Modern data stack for exploring github data
+# Modern data pipeline for exploring github data
+
+Explore analytics data for a github repo using a best-practice modern data pipeline:
+
+1. Meltano/singer to **E**xtract raw data from the github API
+2. Meltano/postgres to **L**oad raw github data into a postgres database
+3. dbt to **T**ransform raw github data into explorable tables
+4. Lightdash to visualise and explore the transformed tables
+
+![screenshot](./docs/screenshot.png)
 
 ## Requirements
 
 * docker
-* a github repo
 
 ## Usage
 
