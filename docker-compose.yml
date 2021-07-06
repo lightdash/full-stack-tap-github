@@ -23,6 +23,7 @@ services:
       - .env
     ports:
       - 5000:5000
+    command: elt tap-github target-postgres --transform run
 
   warehouse:
     image: postgres
