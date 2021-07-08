@@ -16,6 +16,7 @@ Explore analytics data for a github repo using a best-practice modern data pipel
 ## Usage
 
 ### 1. Configure  your credentials
+If you're new to GitHub personal access tokens, check out [how to create/find them here](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token).
 ```
 export TAP_GITHUB_ACCESS_TOKEN=<your personal access token for github>
 export TAP_GITHUB_REPOSITORY="<your github repo e.g. lightdash/lightdash>"
