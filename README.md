@@ -15,17 +15,27 @@ Explore analytics data for a github repo using a best-practice modern data pipel
 
 ## Usage
 
-### 1. Configure  your credentials
-If you're new to GitHub personal access tokens, check out [how to create/find them here](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token).
+### 1. Clone the repo.
 ```
-export TAP_GITHUB_ACCESS_TOKEN=<your personal access token for github>
-export TAP_GITHUB_REPOSITORY="<your github repo e.g. lightdash/lightdash>"
-export TAP_GITHUB_START_DATE="<start date e.g. 2020-10-01T00:00:00Z>"
+git clone git@github.com:lightdash/full-stack-tap-github.git
 ```
 
+### 2. Configure  your credentials
+Head into the `full-stack-tap-github` directory and create a file called `.env`
+```
+cd full-stack-tap-github
+touch .env
+```
 
-### 2. Extract github data, load it to postgres, transform it
+Add the following credentials to your `.env` file. (**Note**: if you're new to GitHub personal access tokens, check out [how to create/find them here](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token).)
+```
+TAP_GITHUB_ACCESS_TOKEN=<your personal access token for github>
+TAP_GITHUB_REPOSITORY="<your github repo e.g. lightdash/lightdash>" # make sure you add quotes around this and the one below!
+TAP_GITHUB_START_DATE="<start date e.g. 2020-10-01T00:00:00Z>"
+```
 
+### 2. Extract GitHub data, load it to postgres, transform it
+From within the `full-stack-tap-github` directory, run:
 ```
 docker compose run meltano
 ```
