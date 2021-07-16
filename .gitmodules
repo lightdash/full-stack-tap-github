@@ -1,0 +1,3 @@
+[submodule "gh-demo/transform/tap-github-dbt"]
+	path = gh-demo/transform/tap-github-dbt
+	url = https://github.com/lightdash/tap-github-dbt
