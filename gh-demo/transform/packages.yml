@@ -1,2 +1,2 @@
 packages:
-- git: https://github.com/lightdash/tap-github-dbt.git
+  - local: ./tap-github-dbt

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker compose run --rm -e PGPASSWORD=verysecretpassword warehouse psql -U postgres -h warehouse 

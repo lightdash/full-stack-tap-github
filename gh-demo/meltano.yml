@@ -31,12 +31,6 @@ plugins:
   - name: target-postgres
     variant: datamill-co
     pip_url: singer-target-postgres
-  transforms:
-  - name: tap-github
-    pip_url: https://github.com/lightdash/tap-github-dbt.git
-    vars:
-      tap_github_raw_database: '{{ env_var(''TARGET_POSTGRES_DATABASE'') }}'
-      tap_github_raw_schema: '{{ env_var(''TARGET_POSTGRES_SCHEMA'') }}'
   transformers:
   - name: dbt
     pip_url: dbt
